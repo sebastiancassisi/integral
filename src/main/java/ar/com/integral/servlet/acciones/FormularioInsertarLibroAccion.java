@@ -1,6 +1,7 @@
 
 package ar.com.integral.servlet.acciones;
 
+import ar.com.integral.bean.Categoria;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,9 +17,9 @@ public class FormularioInsertarLibroAccion extends Accion {
 			HttpServletResponse response) {
 		
 		
-		List<String> listaDeCategorias = null;
+		List<Categoria> listaDeCategorias = null;
 
-		listaDeCategorias = Libro.buscarTodasLasCategorias();
+		listaDeCategorias = Categoria.buscarTodos();
 		request.setAttribute("listaDeCategorias", listaDeCategorias);
 		return "FormularioInsertarLibro.jsp";
 	}

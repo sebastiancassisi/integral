@@ -1,5 +1,6 @@
 
 package ar.com.integral.servlet.acciones;
+import ar.com.integral.bean.Categoria;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class MostrarLibrosAccion extends Accion {
 			HttpServletResponse response) {
 
 			List<Libro> listaDeLibros = Libro.buscarTodos();
-			List<String> listaDeCategorias = Libro.buscarTodasLasCategorias();
+			List<Categoria> listaDeCategorias = Categoria.buscarTodos();
 			request.setAttribute("listaDeLibros", listaDeLibros);
 			request.setAttribute("listaDeCategorias", listaDeCategorias);
 			return "MostrarLibros.jsp";

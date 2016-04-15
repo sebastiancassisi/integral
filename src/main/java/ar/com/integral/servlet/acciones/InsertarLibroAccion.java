@@ -1,10 +1,10 @@
 package ar.com.integral.servlet.acciones;
 
+import ar.com.integral.bean.Categoria;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ar.com.integral.bean.Libro;
-import ar.com.integral.database.DataBaseException;
 
 public class InsertarLibroAccion extends Accion {
 
@@ -15,13 +15,9 @@ public class InsertarLibroAccion extends Accion {
         String isbn = request.getParameter("isbn");
         String titulo = request.getParameter("titulo");
         String categoria = request.getParameter("categoria");
-        Libro libro = new Libro(isbn, titulo, categoria);
-        try {
-            libro.insertar();
-        } catch (DataBaseException ex) {
-
-        }
-
+        Categoria objetoCategoria= new Categoria(Integer.parseInt(categoria));
+        Libro libro = new Libro(isbn, titulo, objetoCategoria);
+        libro.insertar();
         return "MostrarLibros.do";
     }
 

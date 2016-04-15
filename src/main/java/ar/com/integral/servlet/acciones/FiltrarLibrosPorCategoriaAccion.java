@@ -1,5 +1,6 @@
 package ar.com.integral.servlet.acciones;
 
+import ar.com.integral.bean.Categoria;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
             HttpServletResponse response) {
 
         List<Libro> listaDeLibros = null;
-        List<String> listaDeCategorias = Libro.buscarTodasLasCategorias();
+        List<Categoria> listaDeCategorias = Categoria.buscarTodos();
 
         if (request.getParameter("categoria") == null
                 || request.getParameter("categoria").equals("seleccionar")) {
@@ -24,8 +25,8 @@ public class FiltrarLibrosPorCategoriaAccion extends Accion {
 
         } else {
 
-            listaDeLibros = Libro.buscarPorCategoria(request
-                    .getParameter("categoria"));
+            Categoria categoriaSeleccionada= Categoria.buscarPorClave(Integer.parseInt(request.getParameter("categoria")));
+            listaDeLibros = Libro.buscarPorCategoria(categoriaSeleccionada);
 
         }
         request.setAttribute("listaDeLibros", listaDeLibros);
